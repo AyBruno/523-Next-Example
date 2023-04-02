@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import TeamCard from '../teamcard.js'
 
 const api = 'http://127.0.0.1:8090/api';
 
@@ -21,13 +22,7 @@ export default async function TeamPage({ params }){
       <h1>Team/{team.id}</h1>
       <div>
         <h3>{team.name}</h3>
-        <Image
-          src = {src_url}
-          alt = {`${name} logo`}
-          width = {150}
-          height = {150}
-        />
-        <p>{team.wins} - {team.losses}</p>
+        <TeamCard key={team.id} team={team} />
       </div>
     </div>
   );

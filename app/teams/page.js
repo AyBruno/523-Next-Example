@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import TeamCard from './teamcard.js'
 
 const api = 'http://127.0.0.1:8090/api';
 
@@ -16,28 +17,13 @@ export default async function TeamsPage(){
       <h1>ACC Teams</h1>
       <div className = "cards">
         {teams?.map((team) => {
-          return <TeamCard key={team.id} team={team} />;
-        })}
+          return( 
+            <Link href={`/teams/${team.id}`}>
+              <TeamCard key={team.id} team={team} />
+            </Link>
+          ) 
+        })};
       </div>
     </div>
-  )
-}
-
-function TeamCard({team}) {
-  const {id, name, wins, losses, picture} = team || {};
-  let src_url = `${api}/files/teams/${id}/${picture}`;
-
-  return (
-    <Link href={`/teams/${id}`}>
-      <div className="teamCard">
-        <Image
-          src = {src_url}
-          alt = {`${name} logo`}
-          width = {150}
-          height = {150}
-        />
-        <p className="record">{wins} - {losses}</p>
-      </div>
-    </Link>
   )
 }
