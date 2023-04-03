@@ -18,8 +18,9 @@ export default async function TeamsPage(){
       <div className = "cards">
         {teams?.map((team) => {
           return( 
-            <Link href={`/teams/${team.id}`}>
-              <TeamCard key={team.id} team={team} />
+            <Link key={team.id} href={{pathname: `/teams/${team.id}`, 
+                                       query: {name: team.name, wins: team.wins, losses:team.losses, picture:team.picture}}}>
+              <TeamCard team={team} />
             </Link>
           ) 
         })};
